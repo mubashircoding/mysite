@@ -17,18 +17,19 @@ function App() {
       return () => clearInterval(interval)
   }, [timerOn])
   return (
-    <div className="App">
-        <div>
-        <span>{("0"+ Math.floor((time/60000)%60)).slice(-2)}:</span>
-        <span>{("0"+ Math.floor((time/1000)%60)).slice(-2)}:</span>
-      <span>{("0"+((time/10)%100)).slice(-2)}</span>
-        </div>
-        <div>
-        <button onClick={()=>setTimerOn(true)}>start</button>
-        <button onClick={()=>setTimerOn(false)}>stop</button>
-        <button onClick={()=>setTimerOn(true)}>Resume</button>
-        <button onClick={()=>setTime(0)}>Reset</button>
-        </div>
+     <div className="App">
+      <div>
+        <span>{("0" + Math.floor((time / 60000) % 60)).slice(-2)}:</span>
+        <span>{("0" + Math.floor((time / 1000) % 60)).slice(-2)}:</span>
+        <span>{("0" + ((time / 10) % 100)).slice(-2)}</span>
+      </div>
+      <div>
+        {!timerOn && time == 0 && (<button onClick={() => setTimerOn(true)}>start</button>)}
+        {!timerOn && (<button onClick={() => setTimerOn(false)}>stop</button>)}
+        {!timerOn && time !== 0 && (<button onClick={() => setTimerOn(true)}>Resume</button>)}
+        {!timerOn && time > 0 && (<button onClick={() => setTime(0)}>Reset</button>)}
+        
+      </div>
     </div>
   );
 }
